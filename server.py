@@ -1,9 +1,16 @@
 import os
 import cherrypy
 import numpy as np
-#import cv2 #Probably pip cv2 is not opencv package
+import imp
 
-#from FaceExtractor import FaceExtractor
+#cv2 = imp.load_dynamic('cv2','./cv2.pyd')
+#cv2 = imp.load_dynamic('cv2','./cv2.so')
+import cv2 #Probably pip cv2 is not opencv package
+
+#import opencv as cv2
+#import cv2-wrapper as cv2
+
+from FaceExtractor import FaceExtractor
 
 #import ilustra
 
@@ -22,9 +29,10 @@ class UploadHandler(object):
         return ":D"
 
     def POST(self, file):
+   
 
         #Init face extractor 
-        #faceExtractor = FaceExtractor()
+        faceExtractor = FaceExtractor()
        
         
 
@@ -33,27 +41,25 @@ class UploadHandler(object):
         # CherryPy reads the uploaded file into a temporary file;
         # file.file.read reads from that.
 
-        #data = file.file.read() #Reads temp file data
+        data = file.file.read() #Reads temp file data
 
         #size = len(data) #Compute data size
 
-        #img_array = np.frombuffer(data, dtype=np.uint8)
+        img_array = np.frombuffer(data, dtype=np.uint8)
 
-        #rgbImg = cv2.imdecode(img_array, cv2.CV_LOAD_IMAGE_UNCHANGED)
+        rgbImg = cv2.imdecode(img_array, cv2.CV_LOAD_IMAGE_UNCHANGED)
 
-        #result = faceExtractor.Extract(rgbImg)
-        result = "lucas"
+        result = faceExtractor.Extract(rgbImg)
+        #result = "lucas"
 
         #cv2.imshow("Image", rgbImg)
         #cv2.waitKey()
 
         return result
+     
 
 
 if __name__ == '__main__':
-
-
-
 
     conf = {
         '/': {
@@ -73,7 +79,8 @@ if __name__ == '__main__':
     webapp.upload = UploadHandler()
 
     # Read port selected by the cloud for our application
-    PORT = int(os.getenv('PORT', 8080))
+    #PORT = int(os.getenv('PORT', 8080))
+    PORT = 80
 
     # Set server port
     cherrypy.config.update({'server.socket_host': '0.0.0.0', 'server.socket_port': PORT})

@@ -1,4 +1,7 @@
-import cv2
+#cv2 = imp.load_dynamic('cv2','./cv2.pyd')
+#cv2 = imp.load_dynamic('cv2','./cv2.so')
+import cv2 #Probably pip cv2 is not opencv package
+
 import numpy as np
 
 from PersonFace import *

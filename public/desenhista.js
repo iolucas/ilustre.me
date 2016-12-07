@@ -1,9 +1,28 @@
-var svgContainer = d3.select("#svg-container");
+var svgContainer = d3.select("#svg-container").append("g");
 var skyImage = svgContainer;
 
-svgContainer.on("click", function(){
+var currentImageWidth;
+var currentImageHeight;
+
+d3.select("body").on("click", function(){
     closeColorContainer();
 });
+
+window.onresize = function() {
+    
+    updateScale();    
+    
+}
+
+function updateScale() {
+    
+    var currentScale = window.innerWidth / currentImageWidth;
+    
+    svgContainer.attr("transform", "scale(" + currentScale + ")");
+
+    d3.select("#svg-container").attr("height", currentImageHeight * currentScale);
+    
+}
 
 function desenhar(imageMetaData) {
 
@@ -11,9 +30,27 @@ function desenhar(imageMetaData) {
 
 	svgContainer.selectAll("*").remove();
 
-	svgContainer
-		.attr("width", imgSize.width)
-		.attr("height", imgSize.height);
+	//svgContainer
+		//.attr("width", imgSize.width)
+		//.attr("height", imgSize.height);
+        
+    svgContainer.append("rect")
+        .attr("display", "none")
+        .attr("width", imgSize.width)
+	    .attr("height", imgSize.height)
+        .attr("stroke", "#000")
+        .attr("stroke-width", "1")
+        .attr("fill", "none");
+        
+    //Update current image dimensions    
+    currentImageWidth = imgSize.width;
+    currentImageHeight = imgSize.height;
+    
+    //Update scale
+    updateScale();  
+
+    if(imageMetaData.faces.length == 0)
+        alert("Não conseguimos desenhar :/. Tente outra foto.");
 
 	for(var i = 0; i < imageMetaData.faces.length; i++) {
 		var personFace = imageMetaData.faces[i];

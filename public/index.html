@@ -2,14 +2,28 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>PipaFace</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=0">
+<title>Ilustre.me</title>
 <style>
+    
+    html, body {
+        height: 100%;
+        margin: 0;    
+        background-color: #f7f7f7;
+        font-family: Calibri;
+    }
+    
     #subBut {
         font-size: 30px;
     }
     
     #svg-container {
-        border: 1px solid #000;
+        border-bottom: 1px solid #555;
+        background-color: rgba(255,255,255, 0.7);
+        box-sizing: border-box;
+        /*position: fixed;*/
+        position: absolute;
+        top: 50px;
     }
 
     .face-feature {
@@ -33,36 +47,82 @@
     }
 
     img {
-        display: none;
+        /*display: none;*/
+        border: 1px solid #000;
+        box-sizing: border-box;
     }
 
     button {
         width: 100px;
         height: 100px;
     }
+    
+    #title {
+        height: 50px;
+        border-bottom: 1px solid #555;
+        text-align: center;
+        line-height: 50px;
+        font-size: 30px;
+        background-color: #fff;
+    }
+    
+    #load-img {
+        height: 70px;
+        text-align: center;
+        line-height: 70px;
+        font-size: 20px;
+        background-color: #333;
+        color: #fff;
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+    }
+    
+    .noselect {
+        -webkit-touch-callout: none; /* iOS Safari */
+        -webkit-user-select: none;   /* Chrome/Safari/Opera */
+        -khtml-user-select: none;    /* Konqueror */
+        -moz-user-select: none;      /* Firefox */
+        -ms-user-select: none;       /* Internet Explorer/Edge */
+        -user-select: none;           /* Non-prefixed version, currently
+                                        not supported by any browser */
+    }
 
 </style>
 </head>
 <body>
-    <center>
-        <h1>Ilustre.Me</h1>
-        <br>
-        <form method="post" action="upload"
-            enctype="multipart/form-data">
-            <input id="file" type="file" name="file" size="60" /><br /><br><br>
-            <!-- <br /> <input id="subBut" type="submit" value="Upload" /> -->
-        </form>
-        <button onclick="sendFile()">Desenhar!</button><br>
-        <img id="recImg"/>
-        <br>
-        <img id="img-container"/>
-        <svg id="svg-container" width="1000" height="500"></svg>
+    <a href="https://github.com/iolucas" target="_blank"><img style="position: absolute; top: 0; right: 0; border: 0;height:40px;margin:5px;" src="github-512.png" alt="Fork me on GitHub"></a>
 
-    </center>
+
+    <div id="title">Ilustre.Me</div>
+    <input id="file" type="file" style="display:none"/>
+    <img id="img-container" width="100%"/>
+    <svg id="svg-container" width="100%" height="1"></svg>
+    
+    <div id="load-img" class="noselect">Carregar imagem...</div>
+    <!--<center>-->
+        <!--<br>-->
+        <!--<form method="post" action="upload" enctype="multipart/form-data">-->
+            <!--<br /><br><br>-->
+            <!-- <br /> <input id="subBut" type="submit" value="Upload" /> -->
+        <!--</form>-->
+        
+        <!--<button onclick="sendFile()">Desenhar!</button><br>-->
+        <!--<img id="recImg"/>-->
+        <!--<br>-->
+
+
+    <!--</center>-->
     <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
     <script src="//d3js.org/d3.v3.min.js" charset="utf-8"></script>
     <script src="opencv.js"></script>
     <script src="main.js"></script>
     <script src="desenhista.js"></script>
+    <script>
+        $("#load-img").on("click", function(){
+           $("#file").click(); 
+        });
+        
+    </script>
 </body>
 </html>

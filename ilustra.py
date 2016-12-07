@@ -1,5 +1,8 @@
 import numpy as np
-import cv2
+
+#cv2 = imp.load_dynamic('cv2','./cv2.pyd')
+#cv2 = imp.load_dynamic('cv2','./cv2.so')
+import cv2 #Probably pip cv2 is not opencv package
 
 testImg = cv2.imread('test.jpg', cv2.CV_LOAD_IMAGE_GRAYSCALE)
 

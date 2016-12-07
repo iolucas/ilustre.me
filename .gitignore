@@ -1,0 +1,8 @@
+/implementations
+/prototypes
+/debugpic
+/public/old
+/ENV
+*.lnk
+*.pyc
+*.zip
