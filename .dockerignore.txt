@@ -1,0 +1,6 @@
+*.pyd
+*.pyc
+/debugpic
+/ENV
+/implementations
+/prototypes
