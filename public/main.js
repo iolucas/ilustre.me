@@ -4,7 +4,11 @@
  * and open the template in the editor.
  */
 
+hideSvg();
+
 $("#file").on("change", function() {
+    
+    hideSvg();
     
     $.each($('#file')[0].files, function(i, file) {
 
@@ -26,12 +30,11 @@ $("#file").on("change", function() {
                 console.log(reducFactor);
                 
                 //Resize image so the server can handle it proper
-                imageResize(fr.result, reducFactor, function(img) {
+                imageResize(fr.result, reducFactor, function(reducedFile) {
                     
-                    console.log("File reduced...");
-                    console.log(img);             
+                    console.log("File reduced...");      
                     
-                    sendImageBlob(img); 
+                    sendImageBlob(reducedFile); 
 
                 });
                 
@@ -46,37 +49,31 @@ $("#file").on("change", function() {
     
 });
 
+function hideSvg() {
+    $("#svg-container").hide();
+}
+
+function showSvg() {
+    $("#svg-container").show();
+}
+
 
 function imageResize (imgSrc, factor, callback) {
     
-    var image = new Image();
-    image.src = imgSrc;
+    var newImage = new Image();
     
-    mainCanvas = document.createElement("canvas");
-    mainCanvas.width = image.width / factor;
-    mainCanvas.height = image.height / factor;
-    var ctx = mainCanvas.getContext("2d");
-    ctx.drawImage(image, 0, 0, mainCanvas.width, mainCanvas.height);
-           
-           
-           
-           
-
+    newImage.onload = function() {
+        
+        mainCanvas = document.createElement("canvas");
+        mainCanvas.width = newImage.width / factor;
+        mainCanvas.height = newImage.height / factor;
+        var ctx = mainCanvas.getContext("2d");
+        ctx.drawImage(newImage, 0, 0, mainCanvas.width, mainCanvas.height);
     
+        mainCanvas.toBlob(callback, "image/jpeg", 0.5);       
+    }
     
-
-   
-    
-
-    //size = parseInt($('#size').get(0).value, 10);
-    
-    //while (mainCanvas.width > size) {
-        //mainCanvas = halfSize(mainCanvas);
-    //}
-    console.log([mainCanvas]);
-    //return mainCanvas.toDataURL("image/jpeg");
-    mainCanvas.toBlob(callback, "image/jpeg", 1);
-    
+    newImage.src = imgSrc;
 }
 
 /*
@@ -109,11 +106,11 @@ function sendImageBlob(imageData) {
         success: function(data){
             console.log(data);
             var dataObj = JSON.parse(data);
-
-            //console.log("Data Received!");
-            //console.log(dataObj);
-
+            
             desenhar(dataObj);
+            
+            if(dataObj['faces'].length > 0)
+                showSvg()
         }
     });   
     

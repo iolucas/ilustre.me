@@ -29,6 +29,9 @@ class UploadHandler(object):
         return ":D"
 
     def POST(self, file):
+        
+        print("FILE SENDED")
+        print(file);
    
 
         #Init face extractor 
@@ -47,7 +50,7 @@ class UploadHandler(object):
 
         img_array = np.frombuffer(data, dtype=np.uint8)
 
-        rgbImg = cv2.imdecode(img_array, cv2.CV_LOAD_IMAGE_UNCHANGED)
+        rgbImg = cv2.imdecode(img_array, cv2.IMREAD_UNCHANGED)
 
         result = faceExtractor.Extract(rgbImg)
         #result = "lucas"
@@ -79,8 +82,8 @@ if __name__ == '__main__':
     webapp.upload = UploadHandler()
 
     # Read port selected by the cloud for our application
-    #PORT = int(os.getenv('PORT', 8080))
-    PORT = 80
+    PORT = int(os.getenv('PORT', 8080))
+    #PORT = 80
 
     # Set server port
     cherrypy.config.update({'server.socket_host': '0.0.0.0', 'server.socket_port': PORT})

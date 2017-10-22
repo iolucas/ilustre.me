@@ -81,11 +81,11 @@ def rectangleToJson(rect):
 
 #Module Test
 if __name__ == "__main__":
-	print 'Testing Face Extractor module'
+	print('Testing Face Extractor module')
 
 	fExtractor = FaceExtractor()
 
 	testimg = cv2.imread('test.jpg')
 
 	result = fExtractor.Extract(testimg)
-	print result
+	print(result)

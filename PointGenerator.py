@@ -38,8 +38,8 @@ class PointGenerator:
 
 #If it is the main module (for test purposes)
 if __name__ == '__main__':
-    print 'Testing PointGenerator module...'
+    print('Testing PointGenerator module...')
     pointGenerator = PointGenerator.FromPoints(Point(0,0), Point(2,1))
 
-    print pointGenerator.GetFromY(0)
+    print(pointGenerator.GetFromY(0))
 

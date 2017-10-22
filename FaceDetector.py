@@ -90,7 +90,7 @@ class FaceDetector:
 
 #Testing stuff
 if __name__ == "__main__":
-    print 'Testing Face Detector'
+    print('Testing Face Detector')
 
     testimg = cv2.imread('duffs.jpg')
 
@@ -99,7 +99,7 @@ if __name__ == "__main__":
 
     for face in faces:
         face.Evaluate()
-        print face.IsValid()
+        print(face.IsValid())
         faceTuple = face.GetFace().getTuple()
         cv2.rectangle(testimg, faceTuple[0], faceTuple[1], (255,0,0), 1)
 

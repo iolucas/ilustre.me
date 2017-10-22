@@ -17,7 +17,7 @@ class PersonFace:
         self.isValid = False
 
         self.faceLineSlope = 0
-    	self.faceLineOffset = 0
+        self.faceLineOffset = 0
 
 
     def IsValid(self):
@@ -39,9 +39,9 @@ class PersonFace:
         self.eyes.append(eye)
 
     def GetEyes(self):
-    	evEyes = []
-    	for eye in self.evaluatedEyes:
-    		evEyes.append(eye)
+        evEyes = []
+        for eye in self.evaluatedEyes:
+            evEyes.append(eye)
     			
         return evEyes
 
@@ -269,26 +269,26 @@ class PersonFace:
 #Testing stuff
 if __name__ == '__main__':
 
-    print "Testing PersonFace module..."
+    print("Testing PersonFace module...")
     personFace = PersonFace(Rectangle(0,0,100,100))
 
     personFace.Evaluate()
-    print "Expecting FALSE:"
-    print personFace.IsValid()
+    print("Expecting FALSE:")
+    print(personFace.IsValid())
 
 
     personFace.AddEye(Rectangle(10,10,30,30))
     personFace.Evaluate()
-    print "Expecting FALSE:"
-    print personFace.IsValid()
+    print("Expecting FALSE:")
+    print(personFace.IsValid())
 
     personFace.AddMouth(Rectangle(10,60,30,30))
     personFace.Evaluate()
-    print "Expecting TRUE:"
-    print personFace.IsValid()
+    print("Expecting TRUE:")
+    print(personFace.IsValid())
 
 
     personFace.AddEye(Rectangle(90,10,30,30))
     personFace.Evaluate()
-    print "Expecting TRUE:"
-    print personFace.IsValid()
+    print("Expecting TRUE:")
+    print(personFace.IsValid())

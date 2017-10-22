@@ -47,49 +47,52 @@ class Rectangle:
 
 class Point:
 	def __init__(self, x, y):
-		self.xValue = float(x)
-		self.yValue = float(y)
+#		self.xValue = float(x)
+#		self.yValue = float(y)
+		self.x = float(x)
+		self.y = float(y)
 
-	@property
-	def x(self):
-		return self.xValue
-
-	@property
-	def y(self):
-		return self.yValue
+#	@property
+#	def x(self):
+#		return self.xValue
+#
+#	@property
+#	def y(self):
+#		return self.yValue
 
 	def getTuple(self):
-		return (self.xValue, self.yValue)
+#		return (self.xValue, self.yValue)
+		return (self.x, self.y)
 
 
 
 #Testing
 if __name__ == '__main__':
 
-	print 'Testing Size class...'
+	print('Testing Size class...')
 	size = Size(10.7, 21.8)
-	print size.width
-	print size.height
-	print size.getTuple()
-	print ''
+	print(size.width)
+	print(size.height)
+	print(size.getTuple())
+	print('')
 
-	print 'Testing Rectangle class...'
+	print('Testing Rectangle class...')
 	rectangle = Rectangle(0.3, 0.1, 10.2, 5.4)
-	print rectangle.width
-	print rectangle.height
-	print rectangle.x
-	print rectangle.y
-	print rectangle.getTuple()
+	print(rectangle.width)
+	print(rectangle.height)
+	print(rectangle.x)
+	print(rectangle.y)
+	print(rectangle.getTuple())
 	rectangle = Rectangle.FromTuple(((0.3, 0.1), (10.5, 5.5)))
-	print rectangle.width
-	print rectangle.height
-	print rectangle.x
-	print rectangle.y
-	print rectangle.getTuple()
-	print ''
+	print(rectangle.width)
+	print(rectangle.height)
+	print(rectangle.x)
+	print(rectangle.y)
+	print(rectangle.getTuple())
+	print('')
 
-	print 'Testing Point class...'
+	print('Testing Point class...')
 	point = Point(2.3, 6.8)
-	print point.x
-	print point.y
-	print point.getTuple()
+	print(point.x)
+	print(point.y)
+	print(point.getTuple())
